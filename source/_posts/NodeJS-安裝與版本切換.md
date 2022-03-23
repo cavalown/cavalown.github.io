@@ -2,7 +2,6 @@
 title: NodeJS: 安裝與版本切換
 tags: NodeJS
 ---
-
 要安裝Node有兩種方式
 - 官網下載，直接安裝。
 [官網下載頁面](https://nodejs.org/zh-tw/download/)
