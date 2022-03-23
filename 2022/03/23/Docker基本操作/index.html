@@ -1,0 +1,126 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Cavalon"><title>Docker基本操作 · Cavalon's</title><meta name="description" content="Read: Docker專業養成https://ithelp.ithome.com.tw/articles/10191016
+Install 安裝
+Mac OS
+Docker 官網下載Docker for Mac壓縮檔(Docker.dmg)，直接解壓放到application資料夾，啟動應用程式即"><meta name="keywords" content="Cavalon Blog"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="shortcut icon" type="image/x-icon" href="/images/favicon.webp"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="stylesheet" href="/css/insight.css"><link rel="stylesheet" href="/css/search.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 6.1.0"></head><body><div class="page-top animated fadeInDown"><div class="nav"><li> <a href="/">Articles</a></li><li> <a href="/tags">Tags</a></li><li> <a href="/about">About</a></li><li> <a href="/archives">Timeline</a></li></div><div class="information"><div class="nav_right_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li><li><a class="fa fa-search" onclick="openWindow();"></a></li></div><div class="avatar"><img src="/images/logo.png"></div></div></div><div class="sidebar animated fadeInDown"><div class="sidebar-top"><div class="logo-title"><div class="title"><img src="/images/logo.png" style="width:200px;" alt="favicon"><h3 title=""><a href="/">Cavalon's</a></h3><div class="description"><p>Programing & Life</p></div></div><ul class="social-links"><li><a target="_blank" rel="noopener" href="https://github.com/cavalown"><i class="fa fa-github"></i></a></li><li><a href="mailto:cavalown@gmail.com"><i class="fa fa-envelope"></i></a></li><li><a target="_blank" rel="noopener" href="https://www.instagram.com/cavalown/"><i class="fa fa-instagram"></i></a></li><li><a target="_blank" rel="noopener" href="https://www.instagram.com/cavalown/"><i class="fa fa-linkedin"></i></a></li></ul></div></div><div class="footer"><div class="p"> <span> Cavalon Huang </span><i class="fa fa-star"></i><span> Cavalon</span></div><div class="by_farbox"><span>Powered by </span><a href="https://hexo.io/zh-cn/" target="_blank">Hexo </a><span> & </span><span>Anatolo </span></div><div class="beian"></div></div></div><div class="main"><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>Docker基本操作</a></h3></div><div class="post-content"><p><!-- # Docker基本操作
+###### tags: `Docker` -->
+
+<p><code>Read: Docker專業養成</code><br><code>https://ithelp.ithome.com.tw/articles/10191016</code></p>
+<h1 id="Install-安裝"><a href="#Install-安裝" class="headerlink" title="Install 安裝"></a>Install 安裝</h1><ul>
+<li><h3 id="Mac-OS"><a href="#Mac-OS" class="headerlink" title="Mac OS"></a>Mac OS</h3><ol>
+<li>Docker 官網下載Docker for Mac壓縮檔(Docker.dmg)，直接解壓放到application資料夾，啟動應用程式即可。</li>
+<li>Mac版本的Docker只要安裝好就包含了docker-compose，不用另外安裝》</li>
+</ol>
+</li>
+<li><h3 id="Ubuntu"><a href="#Ubuntu" class="headerlink" title="Ubuntu"></a>Ubuntu</h3><ol>
+<li><a target="_blank" rel="noopener" href="https://docs.docker.com/engine/install/ubuntu/">直接參考官方安裝方式，照做即可。</a></li>
+<li>要注意的是，Ubuntu的Docker，docker-engine和docker-compose是要分開安裝的。</li>
+</ol>
+</li>
+</ul>
+<hr>
+<h1 id="Image-映像檔"><a href="#Image-映像檔" class="headerlink" title="Image 映像檔"></a>Image 映像檔</h1><ul>
+<li><h3 id="映像檔名稱："><a href="#映像檔名稱：" class="headerlink" title="映像檔名稱："></a>映像檔名稱：</h3><h4 id="組成有三個部分：-“Namespace-x2F-Repository-Tag：”"><a href="#組成有三個部分：-“Namespace-x2F-Repository-Tag：”" class="headerlink" title="組成有三個部分： “Namespace&#x2F;Repository:Tag：”"></a>組成有三個部分： “<strong>Namespace&#x2F;Repository:Tag</strong>：”</h4><ol>
+<li>Namespace: 印象檔的命名空間，通常會有建制印象的單位或人的名稱代號在裡面。</li>
+<li>Repository: 印象檔的名稱，通常會和裡面包含的應用程式有關。</li>
+<li>Tag:用以區分版本。</li>
+</ol>
+</li>
+<li><h3 id="取得映像檔"><a href="#取得映像檔" class="headerlink" title="取得映像檔"></a>取得映像檔</h3><ul>
+<li><h4 id="下載docker映像檔：docker-pull"><a href="#下載docker映像檔：docker-pull" class="headerlink" title="下載docker映像檔：docker pull"></a>下載docker映像檔：docker pull</h4></li>
+</ul>
+<ol>
+<li>未給予映像的命名空間時，會是下載Docker官方管理的映像。</li>
+<li>未給予印象的tag時，會下載最新版本latest  <figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ sudo docker pull imageName</span><br><span class="line"><span class="comment"># example:</span></span><br><span class="line">$ sudo docker pull ubuntu</span><br><span class="line"><span class="comment"># example 有映像空間和tag</span></span><br><span class="line">$ sudo docker pull registry.hub.docker.com/ubuntu:latest</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ul>
+<li><h4 id="搜尋docker映像檔：docker-search"><a href="#搜尋docker映像檔：docker-search" class="headerlink" title="搜尋docker映像檔：docker search"></a>搜尋docker映像檔：docker search</h4></li>
+</ul>
+<ol>
+<li>透過搜尋官方的映像倉庫Docker hub  <figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ docker search imageName</span><br><span class="line"><span class="comment"># example:</span></span><br><span class="line">$ docker search php</span><br></pre></td></tr></table></figure></li>
+<li>搜尋的結果會包含幾項資訊：<br> <img src="https://i.imgur.com/TZlIDKl.png"><ul>
+<li>Name: 映像檔名稱。</li>
+<li>Description: 描述。</li>
+<li>Stars: 映像檔受歡迎程度。</li>
+<li>Official: 是否為官方Docker維護的映像檔。</li>
+<li>Automated: 映像檔是否自動建構。</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><h3 id="常用指令："><a href="#常用指令：" class="headerlink" title="常用指令："></a>常用指令：</h3><h4 id="1-檢視已存在的映象檔-sudo-docker-images"><a href="#1-檢視已存在的映象檔-sudo-docker-images" class="headerlink" title="1. 檢視已存在的映象檔  $ sudo docker images"></a>1. 檢視已存在的映象檔  <code>$ sudo docker images</code></h4><p>  <img src="https://i.imgur.com/DEvKpF1.png"><br>  * Repository: 名稱<br>  * Tag: 標籤<br>  * Image ID: id<br>  * Created: 建立時間<br>  * Size: 大小</p>
+<h4 id="2-刪除映像檔：-sudo-docker-rmi-id-or-name"><a href="#2-刪除映像檔：-sudo-docker-rmi-id-or-name" class="headerlink" title="2. 刪除映像檔：$ sudo docker rmi id_or_name"></a>2. 刪除映像檔：<code>$ sudo docker rmi id_or_name</code></h4><ul>
+<li>若是此映像檔正有container在執行，則可用強制刪除的方式：<code>$ sudo docker rmi -f id_or_name </code>，但一般來說不建議用此方式。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="Repository"><a href="#Repository" class="headerlink" title="Repository"></a>Repository</h1><h4 id="use-dockerhub-to-be-continue…"><a href="#use-dockerhub-to-be-continue…" class="headerlink" title="use dockerhub( to be continue…)"></a>use dockerhub( to be continue…)</h4><hr>
+<h1 id="Container"><a href="#Container" class="headerlink" title="Container"></a>Container</h1><ul>
+<li><h3 id="建立container並運行"><a href="#建立container並運行" class="headerlink" title="建立container並運行"></a>建立container並運行</h3><h4 id="1-前台運行，可在終端機上觀察到"><a href="#1-前台運行，可在終端機上觀察到" class="headerlink" title="1. 前台運行，可在終端機上觀察到"></a>1. 前台運行，可在終端機上觀察到</h4>  <figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo docker <span class="keyword">run</span><span class="language-bash"> -it image_name</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-後台運行"><a href="#2-後台運行" class="headerlink" title="2. 後台運行"></a>2. 後台運行</h4>  <figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo docker <span class="keyword">run</span><span class="language-bash"> -d image_name</span></span><br></pre></td></tr></table></figure>
+<h4 id="3-為container命名"><a href="#3-為container命名" class="headerlink" title="3. 為container命名"></a>3. 為container命名</h4>  <figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo docker <span class="keyword">run</span><span class="language-bash"> -d --name container_name image_name</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><h3 id="停止container"><a href="#停止container" class="headerlink" title="停止container"></a>停止container</h3><figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo docker stop id_or_name</span><br></pre></td></tr></table></figure>
+</li>
+<li><h3 id="啟動container"><a href="#啟動container" class="headerlink" title="啟動container"></a>啟動container</h3><figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo docker start id_or_name</span><br></pre></td></tr></table></figure>
+</li>
+<li><h3 id="重啟container-x3D-docker-stop-docker-start"><a href="#重啟container-x3D-docker-stop-docker-start" class="headerlink" title="重啟container &#x3D; docker stop + docker start"></a>重啟container &#x3D; docker stop + docker start</h3><figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo docker restart id_or_name</span><br></pre></td></tr></table></figure>
+</li>
+<li><h3 id="刪除container"><a href="#刪除container" class="headerlink" title="刪除container"></a>刪除container</h3><ol>
+<li>刪除已停止的container  <figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo docker rm id_or_name</span><br></pre></td></tr></table></figure></li>
+<li>強制刪除運行中的container  <figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo docker rm -f id_or_name</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><h3 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h3><h4 id="1-檢視container"><a href="#1-檢視container" class="headerlink" title="1. 檢視container"></a>1. 檢視container</h4><p>  <img src="https://i.imgur.com/uU13MXH.png"></p>
+<ul>
+<li>檢視所有運行中的container  <figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo docker ps</span><br></pre></td></tr></table></figure></li>
+<li>檢視所有container  <figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo docker ps -a</span><br></pre></td></tr></table></figure></li>
+<li>檢視最後一個建立的container  <figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo docker ps -l</span><br></pre></td></tr></table></figure></li>
+<li>檢視最後x個建立的container  <figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo docker ps -n x</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="Data-Volume-資料卷"><a href="#Data-Volume-資料卷" class="headerlink" title="Data Volume 資料卷"></a>Data Volume 資料卷</h1><p>因為docker container本身並非永久存在，一旦刪除裡面的資料和log會消失，但有時候會有需要保存的資料，就會需要透過volumn將container裡面的資料夾和外面連動，即便container掛掉或刪掉，該保留的資料並不會受影響。</p>
+<ul>
+<li><h3 id="建立volume"><a href="#建立volume" class="headerlink" title="建立volume"></a>建立volume</h3><h4 id="1-隨container建立-v-folder-path"><a href="#1-隨container建立-v-folder-path" class="headerlink" title="1. 隨container建立 (-v folder_path)"></a>1. 隨container建立 (-v folder_path)</h4><ul>
+<li>使用 -v 指定掛載的資料夾  <figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo docker create --name container_name -v folder_path image_name</span><br></pre></td></tr></table></figure></li>
+<li>可同時掛載多個資料夾  <figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo docker create --name container_name -v folder1 -v folder2 image_name</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="2-直接建立volume-之後啟動docker-run-時，再指定掛載的資料夾。"><a href="#2-直接建立volume-之後啟動docker-run-時，再指定掛載的資料夾。" class="headerlink" title="2. 直接建立volume(之後啟動docker run 時，再指定掛載的資料夾。)"></a>2. 直接建立volume(之後啟動docker run 時，再指定掛載的資料夾。)</h4>  <figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo docker <span class="keyword">volume</span><span class="language-bash"> create --name volumn_name</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><h3 id="掛載volumn"><a href="#掛載volumn" class="headerlink" title="掛載volumn"></a>掛載volumn</h3><h4 id="1-將外部資料夾掛載到已經建立的volume"><a href="#1-將外部資料夾掛載到已經建立的volume" class="headerlink" title="1. 將外部資料夾掛載到已經建立的volume"></a>1. 將外部資料夾掛載到已經建立的volume</h4>  <figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ sudo docker <span class="keyword">volume</span><span class="language-bash"> create --name volume_name</span></span><br><span class="line">$ sudo docker <span class="keyword">run</span><span class="language-bash"> -it  --name container_name -v out_folder:volume_name image name</span></span><br><span class="line"><span class="comment"># example:</span></span><br><span class="line">$ sudo docker <span class="keyword">volume</span><span class="language-bash"> create --name html</span></span><br><span class="line">$ sudo docker <span class="keyword">run</span><span class="language-bash"> -it --name website -v /home/users/xxxx/websites/html:html ngix</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-Volume-container-–volumes-from"><a href="#2-Volume-container-–volumes-from" class="headerlink" title="2. Volume container ( –volumes-from)"></a>2. Volume container ( –volumes-from)</h4><p>  (to be continue…)</p>
+</li>
+<li><h3 id="刪除volomn"><a href="#刪除volomn" class="headerlink" title="刪除volomn"></a>刪除volomn</h3><h4 id="1-直接刪除volume"><a href="#1-直接刪除volume" class="headerlink" title="1. 直接刪除volume"></a>1. 直接刪除volume</h4><p>  <strong>不建議這種方式，因為可能有其他container正在使用這個volume而導致錯誤</strong></p>
+  <figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo docker <span class="keyword">volume</span><span class="language-bash"> <span class="built_in">rm</span> volume_name </span></span><br></pre></td></tr></table></figure>
+<h4 id="2-隨container一起刪除volume-v"><a href="#2-隨container一起刪除volume-v" class="headerlink" title="2. 隨container一起刪除volume(-v)"></a>2. 隨container一起刪除volume(-v)</h4><p>  <strong>建議採用此種方式！</strong></p>
+  <figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo docker rm -v container_name</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h1 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h1><p><strong>用來自動化的建立image</strong></p>
+<ol>
+<li>建立並編輯Dockerfile</li>
+<li>用dockerfile建立image<br> 此指令會自動尋找當前目錄的dockerfile <figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo docker build image_name</span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h1 id="Docker-Compose"><a href="#Docker-Compose" class="headerlink" title="Docker Compose"></a>Docker Compose</h1><p>使用“docker-compose.yml”檔案啟動多個container。</p>
+<h1 id="Docker-實際範例"><a href="#Docker-實際範例" class="headerlink" title="Docker 實際範例"></a>Docker 實際範例</h1><h2 id="Postgresql"><a href="#Postgresql" class="headerlink" title="Postgresql"></a>Postgresql</h2><p><a target="_blank" rel="noopener" href="https://hub.docker.com/_/postgres">Official Document</a></p>
+<ul>
+<li><p>拉取image</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker pull postgres</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>啟動container(可搭配 -itd, –rm。)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres</span><br></pre></td></tr></table></figure></li>
+<li><p>連進去已啟動的container</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker exec -it &#123;container id&#125; psql -U $PG_USER</span><br></pre></td></tr></table></figure></li>
+</ul>
+</p><div class="tip">本文著作權為Cavalon所有，轉載請註明出處。<br>Author: Cavalon</div></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2022-03-23</span><i class="fa fa-tag"></i><a class="tag" href="/tags/Docker/" title="Docker">Docker </a><span class="leancloud_visitors"></span><span>About 1067 words, 3 min 33 sec  read</span></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div></div><div class="pagination"><ul class="clearfix"><li class="next pagbuttons"><a class="btn" role="navigation" href="/2022/03/23/NodeJS-%E5%AE%89%E8%A3%9D%E8%88%87%E7%89%88%E6%9C%AC%E5%88%87%E6%8F%9B/" title="NodeJS-安裝與版本切換">Next</a></li></ul></div><script src="/js/visitors.js"></script><a id="comments"></a><div id="disqus_thread"></div><script>var disqus_shortname = 'cavalonHexoBlog';
+var disqus_identifier = '2022/03/23/Docker基本操作/';
+var disqus_title = 'Docker基本操作';
+var disqus_url = 'https://cavalown.github.io/2022/03/23/Docker基本操作/';
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><script id="dsq-count-scr" src="//#{theme.disqus}.disqus.com/count.js" async></script></div></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script>(function(window){var INSIGHT_CONFIG={TRANSLATION:{POSTS:"Posts",PAGES:"Pages",CATEGORIES:"Categories",TAGS:"Tags",UNTITLED:"(Untitled)",},CONTENT_URL:"/content.json",};window.INSIGHT_CONFIG=INSIGHT_CONFIG})(window);</script><script src="/js/insight.js" defer></script><div class="searchbox ins-search"><div class="searchbox-container ins-search-container"><div class="searchbox-input-wrapper"><input class="searchbox-input ins-search-input" type="text" placeholder="Search..."><span class="searchbox-close"><a class="fa fa-times-circle" onclick="closeWindow();"></a></span></div><div class="searchbox-result-wrapper ins-section-wrapper"><div class="ins-section-container"><p>Seraching...</p></div></div></div></div></body></html>
