@@ -1,6 +1,7 @@
 ---
 title: Python - Guess The Number
 tags: Python
+date: 2022 01 15
 ---
 <!-- # Python : Guess The Number
 ###### tags: `Python` -->
