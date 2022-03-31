@@ -1,6 +1,7 @@
 ---
 title: NodeJS-安裝與版本切換
 tags: NodeJS
+date: 2022 03 11
 ---
 <!-- # NodeJS: 安裝與版本切換
 ###### tags: `Node.js` -->
@@ -9,9 +10,8 @@ tags: NodeJS
 [官網下載頁面](https://nodejs.org/zh-tw/download/)
 - 透過nvm(Node的版本管理工具)來安裝。
 
-:::info
-建議使用nvm安裝，因為可以很輕鬆的轉換多個版本的node，會方便許多。
-:::
+>建議使用nvm安裝，因為可以很輕鬆的轉換多個版本的node，會方便許多。
+
 
 ## 安裝nvm
 首先要先安裝nvm，再藉由nvm安裝需要的node版本。
