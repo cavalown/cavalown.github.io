@@ -46,7 +46,7 @@ nvm ls-remote --lts
 ```bash.nvm=
 nvm ls
 ```
-![nvm ls 範例圖片](https://i.imgur.com/cZeJuhe.png =210x208)
+![nvm ls 範例圖片](https://i.imgur.com/cZeJuhe.png)
 
 - 安裝指定版本的node
 ```bash.nvm=
