@@ -109,3 +109,9 @@ deploy:
 google_Analytics:
   tracking_id: G-ZZZQ5MY39C
   localhost_ignored: true
+
+# Google AdSense
+google_adsense:
+  enable: true
+  google_ad_client_id: ca-pub-6895676633577808
+  enable_page_level_ads: true
