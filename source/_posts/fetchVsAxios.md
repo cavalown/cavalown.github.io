@@ -1,6 +1,11 @@
-# fetch vs. axios
-###### tags: `JavaScript`
-
+---
+title: Fetch vs. Axios
+tags: JavaScript
+date: 2023 01 04
+---
+<!-- # fetch vs. axios -->
+<!-- ###### tags: `JavaScript`
+ -->
 ## fetch API
 - [CDN參考資訊](https://developer.mozilla.org/zh-TW/docs/Web/API/Fetch_API)
 - Promise 回傳：使用then進一步處理，使用catch處理錯誤。
