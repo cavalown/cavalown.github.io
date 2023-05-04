@@ -1,4 +1,9 @@
-# Commitlint
+---
+title: Commitlint
+tags: Git
+date: 2023 05 04
+---
+<!-- # Commitlint -->
 
 為git message增加格式限制。
 [官方網站](https://commitlint.js.org/#/)
