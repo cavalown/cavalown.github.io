@@ -1,0 +1,30 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import MetadataList from "@components/MetadataList.astro";
+import { defaultLocale, type Locale } from "@data/i18n";
+
+interface Props {
+  title: string;
+  summary: string;
+  date: Date;
+  kind: string;
+  tags?: string[];
+  locale?: Locale;
+}
+
+const { title, summary, date, kind, tags = [], locale = defaultLocale } = Astro.props;
+---
+
+<BaseLayout title={title} description={summary} locale={locale}>
+  <article class="article">
+    <header class="article__header">
+      <p class="eyebrow">{kind}</p>
+      <h1>{title}</h1>
+      <p class="lede">{summary}</p>
+      <MetadataList date={date} tags={tags} />
+    </header>
+    <div class="article__body">
+      <slot />
+    </div>
+  </article>
+</BaseLayout>

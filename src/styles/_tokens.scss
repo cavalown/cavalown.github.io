@@ -1,0 +1,42 @@
+:root,
+:root[data-theme="washi"] {
+  --color-bg: #f8f5ef;
+  --color-surface: #fffefb;
+  --color-text: #2b2926;
+  --color-muted: #7b746a;
+  --color-line: #e6ded2;
+  --color-primary: #5f8d73;
+  --color-primary-soft: #e4ede5;
+  --color-accent: #c86f5e;
+  --color-accent-soft: #f5e3de;
+  --color-secondary: #d8b45a;
+  --color-secondary-soft: #f4ebd2;
+  --color-cool-accent: #6e7f8d;
+  --color-cool-soft: #e7ecf0;
+
+  --font-heading: "Noto Serif TC", "Songti TC", "Yu Mincho", serif;
+  --font-body:
+    "Noto Sans TC", "PingFang TC", "Hiragino Sans", system-ui, sans-serif;
+  --font-accent: "Zen Kaku Gothic New", "Noto Sans TC", system-ui, sans-serif;
+
+  --layout-max: 72rem;
+  --radius-sm: 0.35rem;
+  --radius-md: 0.5rem;
+  --motion-fast: 180ms ease;
+}
+
+:root[data-theme="indigo"] {
+  --color-bg: #f7f8fa;
+  --color-surface: #ffffff;
+  --color-text: #26292d;
+  --color-muted: #6f7680;
+  --color-line: #dfe5ea;
+  --color-primary: #647f9c;
+  --color-primary-soft: #e7ecf0;
+  --color-accent: #b86f68;
+  --color-accent-soft: #f4e5e3;
+  --color-secondary: #c7a85b;
+  --color-secondary-soft: #f2ead4;
+  --color-cool-accent: #59677d;
+  --color-cool-soft: #e6eaf0;
+}

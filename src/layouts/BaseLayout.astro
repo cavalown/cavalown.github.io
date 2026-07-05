@@ -1,0 +1,39 @@
+---
+import "@styles/global.scss";
+import Footer from "@components/Footer.astro";
+import Navigation from "@components/Navigation.astro";
+import { copy, defaultLocale, locales, type Locale } from "@data/i18n";
+import { site } from "@data/site";
+
+interface Props {
+  title?: string;
+  description?: string;
+  locale?: Locale;
+}
+
+const { title, locale = defaultLocale } = Astro.props;
+const description = Astro.props.description ?? copy[locale].siteDescription;
+const pageTitle = title ? `${title} | ${site.name}` : site.title;
+const canonical = new URL(Astro.url.pathname, site.url);
+---
+
+<!doctype html>
+<html lang={locales[locale].lang} data-theme="washi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <div class="site-shell">
+      <Navigation locale={locale} />
+      <main id="main-content">
+        <slot />
+      </main>
+      <Footer locale={locale} />
+    </div>
+  </body>
+</html>

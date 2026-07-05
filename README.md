@@ -1,6 +1,27 @@
-# cavalown.github.io
-[Cavalon's website](https://cavalown.github.io/)
+# cavalown.com
 
-Current Version - basic on branch：
-- Hexo: only blog *(Running)
-- Vue3
+Personal home for `cavalown`.
+
+## Stack
+
+- Astro
+- SCSS
+- Static output for Cloudflare Pages
+
+## Development
+
+```sh
+npm install
+npm run dev
+```
+
+## Build
+
+```sh
+npm run build
+```
+
+Cloudflare Pages settings:
+
+- Build command: `npm run build`
+- Output directory: `dist`

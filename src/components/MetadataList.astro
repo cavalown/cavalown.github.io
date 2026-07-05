@@ -1,0 +1,20 @@
+---
+interface Props {
+  date?: Date;
+  tags?: string[];
+}
+
+const { date, tags = [] } = Astro.props;
+const formattedDate = date
+  ? new Intl.DateTimeFormat("en", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    }).format(date)
+  : undefined;
+---
+
+<ul class="meta-list">
+  {formattedDate && <li>{formattedDate}</li>}
+  {tags.map((tag) => <li>{tag}</li>)}
+</ul>

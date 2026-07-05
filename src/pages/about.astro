@@ -1,0 +1,27 @@
+---
+import { copy } from "@data/i18n";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import SectionHeader from "@components/SectionHeader.astro";
+
+const locale = "en";
+---
+
+<BaseLayout
+  locale={locale}
+  title="About"
+  description="About the person behind cavalown."
+>
+  <section class="split-section">
+    <SectionHeader
+      eyebrow="About"
+      title={copy[locale].about.title}
+      description={copy[locale].about.description}
+    />
+    <div class="prose">
+      <p>{copy[locale].about.intro}</p>
+      <p>{copy[locale].about.body}</p>
+      <h2>{copy[locale].about.heading}</h2>
+      <p>{copy[locale].about.outro}</p>
+    </div>
+  </section>
+</BaseLayout>

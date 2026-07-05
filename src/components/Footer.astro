@@ -1,0 +1,16 @@
+---
+import { copy, defaultLocale, type Locale } from "@data/i18n";
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = defaultLocale } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <p>cavalown.com</p>
+  <p>{copy[locale].footer}</p>
+  <p>&copy; {year} cavalown</p>
+</footer>

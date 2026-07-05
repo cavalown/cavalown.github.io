@@ -1,0 +1,37 @@
+---
+import ContentCard from "@components/ContentCard.astro";
+import { copy } from "@data/i18n";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import SectionHeader from "@components/SectionHeader.astro";
+import { getCollection } from "astro:content";
+
+const locale = "en";
+const writing = (await getCollection("writing")).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+---
+
+<BaseLayout
+  locale={locale}
+  title="Writing"
+  description="Personal writing about work, culture, life, and reflection."
+>
+  <SectionHeader
+    eyebrow={copy[locale].sections.writing.eyebrow}
+    title={copy[locale].sections.writing.title}
+    description={copy[locale].sections.writing.description}
+  />
+  <section class="content-grid" aria-label="Writing entries">
+    {
+      writing.map((entry) => (
+        <ContentCard
+          href={`/writing/${entry.slug}/`}
+          title={entry.data.title}
+          summary={entry.data.summary}
+          date={entry.data.date}
+          tags={[entry.data.kind, ...entry.data.tags]}
+        />
+      ))
+    }
+  </section>
+</BaseLayout>

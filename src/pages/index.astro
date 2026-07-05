@@ -1,0 +1,37 @@
+---
+import { copy } from "@data/i18n";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { socialLinks } from "@data/site";
+
+const locale = "en";
+---
+
+<BaseLayout locale={locale}>
+  <section class="hero" aria-labelledby="hero-title">
+    <h1 id="hero-title">{copy[locale].hero.title}</h1>
+    <p class="hero__lede">{copy[locale].hero.lede}</p>
+    <div class="hero__actions" aria-label="Primary sections">
+      <a class="pill-link" href="/projects/">
+        {copy[locale].nav.projects}
+      </a>
+      <a class="pill-link" href="/studio/">
+        {copy[locale].nav.studio}
+      </a>
+      <a class="pill-link" href="/writing/">
+        {copy[locale].nav.writing}
+      </a>
+      <a class="pill-link" href="/about/">
+        {copy[locale].nav.about}
+      </a>
+    </div>
+    <nav class="hero__links" aria-label="External links">
+      {
+        socialLinks.map((link) => (
+          <a href={link.href} target="_blank" rel="noreferrer">
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+  </section>
+</BaseLayout>

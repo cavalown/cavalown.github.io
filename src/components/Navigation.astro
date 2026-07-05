@@ -1,0 +1,98 @@
+---
+import {
+  alternateLocale,
+  alternatePath,
+  copy,
+  defaultLocale,
+  locales,
+  type Locale,
+  withLocale,
+} from "@data/i18n";
+import { navItems, site } from "@data/site";
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = defaultLocale } = Astro.props;
+const currentPath = Astro.url.pathname;
+const otherLocale = alternateLocale(locale);
+const languageHref = alternatePath(currentPath, locale);
+---
+
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header" data-site-header>
+  <a class="brand" href={withLocale("/", locale)} aria-label={`${site.name} home`}>
+    {site.name}
+  </a>
+  <button
+    class="nav-toggle"
+    type="button"
+    aria-label={copy[locale].menu.open}
+    aria-expanded="false"
+    aria-controls="primary-navigation"
+    data-nav-toggle
+    data-open-label={copy[locale].menu.open}
+    data-close-label={copy[locale].menu.close}
+  >
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+  </button>
+  <nav id="primary-navigation" class="site-nav" aria-label="Primary navigation">
+    {
+      navItems.map((item) => {
+        const href = withLocale(item.href, locale);
+        const active = currentPath === href || currentPath.startsWith(href);
+        return (
+          <a href={href} aria-current={active ? "page" : undefined}>
+            {copy[locale].nav[item.key]}
+          </a>
+        );
+      })
+    }
+    <a class="language-link" href={languageHref} hreflang={locales[otherLocale].lang}>
+      {locales[locale].switchLabel}
+    </a>
+  </nav>
+</header>
+
+<script>
+  document.documentElement.classList.add("has-js");
+
+  const header = document.querySelector("[data-site-header]");
+  const toggle = header?.querySelector<HTMLButtonElement>("[data-nav-toggle]");
+  const nav = document.querySelector("#primary-navigation");
+
+  function setOpen(open: boolean) {
+    header?.setAttribute("data-nav-open", String(open));
+    document.body.classList.toggle("nav-open", open);
+    toggle?.setAttribute("aria-expanded", String(open));
+    toggle?.setAttribute(
+      "aria-label",
+      open ? toggle.dataset.closeLabel ?? "Close navigation" : toggle.dataset.openLabel ?? "Open navigation",
+    );
+  }
+
+  toggle?.addEventListener("click", () => {
+    const isOpen = toggle.getAttribute("aria-expanded") === "true";
+    setOpen(!isOpen);
+  });
+
+  nav?.addEventListener("click", (event) => {
+    if (event.target instanceof HTMLAnchorElement) {
+      setOpen(false);
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      setOpen(false);
+    }
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.matchMedia("(min-width: 761px)").matches) {
+      setOpen(false);
+    }
+  });
+</script>
