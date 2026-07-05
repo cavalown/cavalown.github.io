@@ -1,25 +1,14 @@
 ---
-import ArticleLayout from "@layouts/ArticleLayout.astro";
-import { getCollection, render } from "astro:content";
+import ContentArticle from "@components/ContentArticle.astro";
+import { getEntryPaths } from "@data/content";
 
 const locale = "zh";
 
 export async function getStaticPaths() {
-  const entries = await getCollection("writing");
-  return entries.map((entry) => ({ params: { slug: entry.slug }, props: { entry } }));
+  return getEntryPaths("writing");
 }
 
 const { entry } = Astro.props;
-const { Content } = await render(entry);
 ---
 
-<ArticleLayout
-  locale={locale}
-  title={entry.data.title}
-  summary={entry.data.summary}
-  date={entry.data.date}
-  kind={entry.data.kind}
-  tags={entry.data.tags}
->
-  <Content />
-</ArticleLayout>
+<ContentArticle locale={locale} entry={entry} />

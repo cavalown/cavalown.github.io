@@ -1,37 +1,10 @@
 ---
-import ContentCard from "@components/ContentCard.astro";
-import { copy, withLocale } from "@data/i18n";
-import BaseLayout from "@layouts/BaseLayout.astro";
-import SectionHeader from "@components/SectionHeader.astro";
-import { getCollection } from "astro:content";
+import CollectionIndex from "@components/CollectionIndex.astro";
+import { getEntries } from "@data/content";
 
 const locale = "zh";
-const projects = (await getCollection("projects")).sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
-);
+const collection = "projects";
+const entries = await getEntries(collection);
 ---
 
-<BaseLayout
-  locale={locale}
-  title={copy[locale].nav.projects}
-  description={copy[locale].sections.projects.description}
->
-  <SectionHeader
-    eyebrow={copy[locale].sections.projects.eyebrow}
-    title={copy[locale].sections.projects.title}
-    description={copy[locale].sections.projects.description}
-  />
-  <section class="content-grid" aria-label="Project entries">
-    {
-      projects.map((entry) => (
-        <ContentCard
-          href={withLocale(`/projects/${entry.slug}/`, locale)}
-          title={entry.data.title}
-          summary={entry.data.summary}
-          date={entry.data.date}
-          tags={[entry.data.category, entry.data.status, ...entry.data.tags]}
-        />
-      ))
-    }
-  </section>
-</BaseLayout>
+<CollectionIndex locale={locale} collection={collection} entries={entries} />

@@ -1,0 +1,38 @@
+---
+import ContentCard from "@components/ContentCard.astro";
+import { getEntryTags, type EntryCollection, type LocalizedEntry } from "@data/content";
+import { copy, type Locale, withLocale } from "@data/i18n";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import SectionHeader from "@components/SectionHeader.astro";
+
+interface Props {
+  collection: EntryCollection;
+  entries: LocalizedEntry[];
+  locale: Locale;
+}
+
+const { collection, entries, locale } = Astro.props;
+const sectionCopy = copy[locale].sections[collection];
+const label = copy[locale].nav[collection];
+---
+
+<BaseLayout locale={locale} title={label} description={sectionCopy.description}>
+  <SectionHeader
+    eyebrow={sectionCopy.eyebrow}
+    title={sectionCopy.title}
+    description={sectionCopy.description}
+  />
+  <section class="content-grid" aria-label={`${label} entries`}>
+    {
+      entries.map((entry) => (
+        <ContentCard
+          href={withLocale(`/${collection}/${entry.slug}/`, locale)}
+          title={entry.data.title}
+          summary={entry.data.summary}
+          date={entry.data.date}
+          tags={getEntryTags(entry)}
+        />
+      ))
+    }
+  </section>
+</BaseLayout>

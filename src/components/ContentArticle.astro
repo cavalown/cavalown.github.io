@@ -1,0 +1,25 @@
+---
+import { getEntryKind, type LocalizedEntry } from "@data/content";
+import { defaultLocale, type Locale } from "@data/i18n";
+import ArticleLayout from "@layouts/ArticleLayout.astro";
+import { render } from "astro:content";
+
+interface Props {
+  entry: LocalizedEntry;
+  locale?: Locale;
+}
+
+const { entry, locale = defaultLocale } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<ArticleLayout
+  locale={locale}
+  title={entry.data.title}
+  summary={entry.data.summary}
+  date={entry.data.date}
+  kind={getEntryKind(entry)}
+  tags={entry.collection === "projects" ? [entry.data.status, ...entry.data.tags] : entry.data.tags}
+>
+  <Content />
+</ArticleLayout>

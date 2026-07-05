@@ -26,6 +26,9 @@ const canonical = new URL(Astro.url.pathname, site.url);
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <title>{pageTitle}</title>
+    <script is:inline>
+      document.documentElement.classList.add("has-js");
+    </script>
   </head>
   <body>
     <div class="site-shell">

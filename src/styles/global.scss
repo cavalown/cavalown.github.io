@@ -70,7 +70,7 @@ button:focus-visible {
 }
 
 .site-shell {
-  width: min(100% - 1.25rem, var(--layout-max));
+  width: min(100% - 2rem, var(--layout-max));
   min-height: 100vh;
   margin: 0 auto;
   display: grid;
@@ -106,7 +106,7 @@ button:focus-visible {
   position: relative;
   z-index: 2;
   font-family: var(--font-accent);
-  font-size: 1rem;
+  font-size: 1.22rem;
   font-weight: 600;
   letter-spacing: 0;
   text-decoration: none;
@@ -172,7 +172,7 @@ button:focus-visible {
 }
 
 main {
-  padding-block: clamp(3rem, 7vw, 6.5rem);
+  padding-block: clamp(3.5rem, 7vw, 7rem);
 }
 
 .hero {
@@ -461,7 +461,7 @@ main {
 
 @media (max-width: 760px) {
   main {
-    padding-block: 2.5rem 3.75rem;
+    padding-block: 3rem 4.25rem;
   }
 
   .site-header {
@@ -635,7 +635,7 @@ main {
 
 @media (max-width: 420px) {
   .site-shell {
-    width: min(100% - 1rem, var(--layout-max));
+    width: min(100% - 1.5rem, var(--layout-max));
   }
 
   .hero h1 {
@@ -655,7 +655,11 @@ main {
 
 @media (min-width: 761px) {
   .site-shell {
-    width: min(100% - 2rem, var(--layout-max));
+    width: min(100% - 3rem, var(--layout-max));
+  }
+
+  .brand {
+    font-size: 1.35rem;
   }
 
   .hero {
