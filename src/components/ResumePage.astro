@@ -1,0 +1,57 @@
+---
+import { copy, defaultLocale, type Locale } from "@data/i18n";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import SectionHeader from "@components/SectionHeader.astro";
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = defaultLocale } = Astro.props;
+const resume = copy[locale].resume;
+---
+
+<BaseLayout locale={locale} title={copy[locale].nav.resume} description={resume.description}>
+  <section class="split-section resume-page">
+    <SectionHeader
+      eyebrow={resume.eyebrow}
+      title={resume.title}
+      description={resume.description}
+    />
+    <div class="resume-stack">
+      <p class="lede">{resume.summary}</p>
+      <nav class="resume-links" aria-label="Resume links">
+        {
+          resume.links.map((link) => (
+            <a href={link.href} target={link.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer">
+              {link.label}
+            </a>
+          ))
+        }
+      </nav>
+      <ul class="resume-highlights" aria-label="Resume highlights">
+        {resume.highlights.map((highlight) => <li>{highlight}</li>)}
+      </ul>
+      {
+        resume.sections.map((section, index) => (
+          <section class="resume-section" aria-labelledby={`resume-section-${index}`}>
+            <h2 id={`resume-section-${index}`}>{section.title}</h2>
+            <div class="resume-entries">
+              {section.entries.map((entry) => (
+                <article class="resume-entry">
+                  <h3>{entry.title}</h3>
+                  {"meta" in entry && entry.meta && <p>{entry.meta}</p>}
+                  <ul>
+                    {entry.items.map((item) => (
+                      <li>{item}</li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </div>
+          </section>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>

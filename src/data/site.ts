@@ -8,6 +8,7 @@ export const site = {
 
 export const navItems = [
   { href: "/about/", key: "about" },
+  { href: "/resume/", key: "resume" },
   { href: "/projects/", key: "projects" },
   { href: "/studio/", key: "studio" },
   { href: "/writing/", key: "writing" },
