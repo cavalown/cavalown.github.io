@@ -39,6 +39,7 @@ const languageHref = alternatePath(currentPath, locale);
     <span aria-hidden="true"></span>
   </button>
   <nav id="primary-navigation" class="site-nav" aria-label="Primary navigation">
+    <span class="menu-label" aria-hidden="true">Menu</span>
     {
       navItems.map((item) => {
         const href = withLocale(item.href, locale);
