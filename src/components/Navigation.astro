@@ -23,7 +23,8 @@ const languageHref = alternatePath(currentPath, locale);
 <a class="skip-link" href="#main-content">Skip to content</a>
 <header class="site-header" data-site-header>
   <a class="brand" href={withLocale("/", locale)} aria-label={`${site.name} home`}>
-    {site.name}
+    <img src="/logo.png" alt="" width="500" height="500" decoding="async" />
+    <span>{site.name}</span>
   </a>
   <button
     class="nav-toggle"

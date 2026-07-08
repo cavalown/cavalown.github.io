@@ -193,7 +193,7 @@ export const copy = {
     },
     hero: {
       title: "為生活。",
-      lede: "作品、筆記、文字，和拉哩拉匝的五a某a。",
+      lede: "一些作品、一點筆記、拼湊的文字，和一大堆拉哩拉匝的五a某a。",
     },
     about: {
       title: "見與不見的",

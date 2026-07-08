@@ -105,11 +105,21 @@ button:focus-visible {
 .brand {
   position: relative;
   z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
   font-family: var(--font-accent);
   font-size: 1.22rem;
   font-weight: 600;
   letter-spacing: 0;
   text-decoration: none;
+}
+
+.brand img {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .nav-toggle {
