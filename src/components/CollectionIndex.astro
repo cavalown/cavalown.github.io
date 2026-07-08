@@ -14,6 +14,15 @@ interface Props {
 const { collection, entries, locale } = Astro.props;
 const sectionCopy = copy[locale].sections[collection];
 const label = copy[locale].nav[collection];
+const gridClass =
+  collection === "projects" ? "content-grid" : "content-grid content-grid--articles";
+const tagCounts = entries
+  .flatMap((entry) => getEntryTags(entry))
+  .reduce<Map<string, number>>((counts, tag) => {
+    counts.set(tag, (counts.get(tag) ?? 0) + 1);
+    return counts;
+  }, new Map());
+const tags = [...tagCounts.entries()].sort(([a], [b]) => a.localeCompare(b));
 ---
 
 <BaseLayout locale={locale} title={label} description={sectionCopy.description}>
@@ -22,7 +31,19 @@ const label = copy[locale].nav[collection];
     title={sectionCopy.title}
     description={sectionCopy.description}
   />
-  <section class="content-grid" aria-label={`${label} entries`}>
+  {
+    tags.length > 0 && (
+      <nav class="tag-cloud" aria-label={`${label} tags`}>
+        {tags.map(([tag, count]) => (
+          <span class="tag-cloud__item">
+            {tag}
+            <small>{count}</small>
+          </span>
+        ))}
+      </nav>
+    )
+  }
+  <section class={gridClass} aria-label={`${label} entries`}>
     {
       entries.map((entry) => (
         <ContentCard

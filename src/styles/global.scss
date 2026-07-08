@@ -354,6 +354,46 @@ main {
   background: var(--color-line);
 }
 
+.content-grid--articles {
+  max-width: 56rem;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  border: 0;
+  background: transparent;
+}
+
+.tag-cloud {
+  max-width: 56rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin: calc(clamp(2rem, 6vw, 4rem) * -0.45) 0 clamp(1.5rem, 4vw, 2.4rem);
+}
+
+.tag-cloud__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.38rem;
+  border: 1px solid var(--color-line);
+  border-radius: 999px;
+  padding: 0.42rem 0.72rem;
+  background: color-mix(in srgb, var(--color-surface) 82%, transparent);
+  color: var(--color-muted);
+  font-size: 0.84rem;
+  line-height: 1;
+}
+
+.tag-cloud__item small {
+  min-width: 1.15rem;
+  border-radius: 999px;
+  padding: 0.18rem 0.34rem;
+  background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+  color: var(--color-primary);
+  font-size: 0.68rem;
+  line-height: 1;
+  text-align: center;
+}
+
 .entry-link,
 .content-card {
   min-height: 13rem;
@@ -392,6 +432,19 @@ main {
   padding: clamp(1.1rem, 3vw, 1.6rem);
 }
 
+.content-grid--articles .content-card {
+  min-height: auto;
+  border: 1px solid var(--color-line);
+  border-radius: 8px;
+  padding: clamp(1.15rem, 3vw, 1.8rem);
+}
+
+.content-grid--articles .content-card:hover {
+  border-color: color-mix(in srgb, var(--color-primary) 52%, var(--color-line));
+  box-shadow: 0 0.75rem 2rem
+    color-mix(in srgb, var(--color-text) 6%, transparent);
+}
+
 .content-card h2 {
   margin: 0.8rem 0 0.75rem;
   font-family: var(--font-heading);
@@ -399,13 +452,24 @@ main {
   line-height: 1.05;
 }
 
+.content-grid--articles .content-card h2 {
+  margin-top: 0;
+  font-size: clamp(1.35rem, 3vw, 1.85rem);
+  line-height: 1.15;
+}
+
 .content-card h2 a {
   text-decoration: none;
 }
 
 .content-card p {
+  max-width: 42rem;
   color: var(--color-muted);
   line-height: 1.7;
+}
+
+.content-grid--articles .content-card p {
+  margin-block: 0.75rem 0;
 }
 
 .content-card__meta {
