@@ -1,7 +1,8 @@
 ---
 import { copy } from "@data/i18n";
+import HeroSocialLinks from "@components/HeroSocialLinks.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
-import { socialLinks } from "@data/site";
+import { navItems } from "@data/site";
 
 const locale = "en";
 ---
@@ -10,31 +11,15 @@ const locale = "en";
   <section class="hero" aria-labelledby="hero-title">
     <h1 id="hero-title">{copy[locale].hero.title}</h1>
     <p class="hero__lede">{copy[locale].hero.lede}</p>
+    <HeroSocialLinks />
     <div class="hero__actions" aria-label="Primary sections">
-      <a class="pill-link" href="/projects/">
-        {copy[locale].nav.projects}
-      </a>
-      <a class="pill-link" href="/studio/">
-        {copy[locale].nav.studio}
-      </a>
-      <a class="pill-link" href="/writing/">
-        {copy[locale].nav.writing}
-      </a>
-      <a class="pill-link" href="/about/">
-        {copy[locale].nav.about}
-      </a>
-      <a class="pill-link" href="/resume/">
-        {copy[locale].nav.resume}
-      </a>
-    </div>
-    <nav class="hero__links" aria-label="External links">
       {
-        socialLinks.map((link) => (
-          <a href={link.href} target="_blank" rel="noreferrer">
-            {link.label}
+        navItems.map((item) => (
+          <a class="pill-link" href={item.href}>
+            {copy[locale].nav[item.key]}
           </a>
         ))
       }
-    </nav>
+    </div>
   </section>
 </BaseLayout>
